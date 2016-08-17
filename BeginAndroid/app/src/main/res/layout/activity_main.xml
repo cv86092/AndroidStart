@@ -24,11 +24,73 @@
         android:layout_alignParentLeft="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button"
         android:id="@+id/button"
+        android:onClick="submit"
+        android:layout_below="@+id/weight"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_alignParentStart="true" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_below="@+id/editText"
-        android:layout_alignParentStart="true"
-        android:onClick="submit" />
+        android:layout_alignParentStart="false"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="男生"
+            android:id="@+id/male"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="女生"
+            android:id="@+id/female"
+            android:layout_gravity="center_horizontal"
+            android:checked="false" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="體重: "
+        android:id="@+id/weight"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_above="@+id/button"
+        android:layout_toEndOf="@+id/weight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="身 高:"
+        android:id="@+id/height"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:layout_above="@+id/button"
+        android:layout_toEndOf="@+id/height" />
+
 </RelativeLayout>

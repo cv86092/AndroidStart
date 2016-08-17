@@ -63,26 +63,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//    radioGroup.setOnCheckedChangeListener(rdgSexchkChListener);
-//    public RadioGroup.OnCheckedChangeListener rdgSexchkChListener =
-//            RadioGroup.OnCheckedChangeListener(RadioGroup group, int checkedId)
-//
-//    {
-//        int intChkRb = radioGroup.getCheckedRadioButtonId();
-//    }
-
-
-
 
     public void submit(View view){
         String result = editText.getText().toString();
-        int weight = Integer.parseInt(editText2.getText().toString());
-        int height = Integer.parseInt(editText3.getText().toString());
+        try {
+            double weight = Double.parseDouble(editText2.getText().toString());
+            double height = Double.parseDouble(editText3.getText().toString());
+            double bmi = (weight) / ((height / 100) * (height / 100));
+            String bmiValue = String.valueOf((int) bmi);
+            textView.setText(result + bmiValue);
+        }
+        catch(NumberFormatException e){
+            textView.setText("plz input your weight and height");
 
-//        int bmi = (weight)/((height/100)*(height/100));
-        double bmi = 50/(1.44*1.44);
-        String bmiValue = String.valueOf(bmi);
-        textView.setText(result + bmiValue);
+        }
+
+
+
         editText.setText("");
     }
 

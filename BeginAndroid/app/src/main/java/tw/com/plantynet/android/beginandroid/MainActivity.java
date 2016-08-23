@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -13,6 +14,9 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -77,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         setupSpinner();
-
+       // setupListView();
 
         }
 
@@ -105,7 +109,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void setupListView()
+    {
+//        List<String> dataList = new ArrayList<String>();
+        String[] item = new String[]{String.valueOf(editText.getText())};
+        ArrayAdapter<String> listviewadapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,item);
 
+        listView.setAdapter(listviewadapter);
+    }
 
     public void submit(View view){
         String result = editText.getText().toString();
@@ -123,9 +134,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
+        setupListView();
         editText.setText("");
+
     }
+
+
 
 
 }

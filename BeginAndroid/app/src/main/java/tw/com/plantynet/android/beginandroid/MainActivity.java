@@ -4,9 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 
@@ -20,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     String regex = "男生";
     EditText editText2;
     EditText editText3;
+    ListView listView;
+    String msg;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
         editText2 = (EditText)findViewById(R.id.editText2);
         editText3 = (EditText)findViewById(R.id.editText3);
-
+        listView = (ListView)findViewById(R.id.listView);
+        spinner = (Spinner)findViewById(R.id.spinner);
 
 
 
@@ -47,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -56,11 +65,45 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+       editText2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    editText2.setText("");
+                    editText3.setText("");
+                }
+            }
+        });
+
+
+        setupSpinner();
 
 
         }
 
 
+    public void setupSpinner() {
+        ArrayAdapter spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.namespinner, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+
+
+        AdapterView.OnItemSelectedListener spinnerListener =
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        textView.setText((String)spinner.getSelectedItem());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        textView.setText("spinner selected nothing");
+                    }
+                };
+
+        spinner.setOnItemSelectedListener(spinnerListener);
+
+    }
 
 
 
@@ -74,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(result + bmiValue);
         }
         catch(NumberFormatException e){
-            textView.setText("plz input your weight and height");
+            String spinnerText = (String)spinner.getSelectedItem();
+            textView.setText(spinnerText);
 
         }
 

@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
         setupListView();
         editText.setText("");
 
